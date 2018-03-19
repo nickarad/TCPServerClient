@@ -15,7 +15,7 @@ namespace TcpServer
         {
 
             TCPServer myServer = new TCPServer();
-            myServer.Start();
+            myServer.Start(); 
 
             Console.ReadKey();
         }
