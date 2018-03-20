@@ -17,7 +17,7 @@ namespace TCPClient
             {
 
                 //Registration newReg = new Registration();
-
+                // Create new Node
                 IoTNode newNode = new IoTNode();
                 newNode.Name = "sensor";
                 newNode.State = 15;
