@@ -52,5 +52,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SouthBoundAPI\SouthBoundAPI.csproj">
+      <Project>{8d631aac-6e30-49c4-ac68-b706cacf35de}</Project>
+      <Name>SouthBoundAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,7 +3,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Net.Sockets;
-//using SouthBoundAPI;
+using SouthBoundAPI;
 using Newtonsoft.Json;
 
 namespace TCPClient
@@ -12,8 +12,27 @@ namespace TCPClient
     {
         static void Main(string[] args)
         {
+
             try
             {
+
+                //Registration newReg = new Registration();
+
+                IoTNode newNode = new IoTNode();
+                newNode.Name = "sensor";
+                newNode.State = 15;
+                newNode.SerialNumber = "ad123";
+                newNode.Manufacturer = "sdsad";
+                newNode.Firmware = "firm";
+
+
+                string output = JsonConvert.SerializeObject(newNode);
+
+                Console.Write(output);
+
+                Console.ReadKey();
+
+
                 TcpClient tcpclnt = new TcpClient();
                 Console.WriteLine("Connecting.....");
 
@@ -21,13 +40,18 @@ namespace TCPClient
                 // use the ipaddress as in the server program
 
                 Console.WriteLine("Connected");
-                Console.Write("Enter the string to be transmitted : ");
 
-                String str = Console.ReadLine();
+
+
+
+                //Console.Write("Enter the string to be transmitted : ");
+
+                //String str = Console.ReadLine();
+
                 Stream stm = tcpclnt.GetStream();
 
                 ASCIIEncoding asen = new ASCIIEncoding();
-                byte[] ba = asen.GetBytes(str);
+                byte[] ba = asen.GetBytes(output);
                 Console.WriteLine("Transmitting.....");
 
                 stm.Write(ba, 0, ba.Length);
