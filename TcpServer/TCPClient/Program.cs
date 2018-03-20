@@ -15,7 +15,6 @@ namespace TCPClient
 
             try
             {
-
                 //Registration newReg = new Registration();
                 // Create new Node
                 IoTNode newNode = new IoTNode();

@@ -9,6 +9,8 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using SouthBoundAPI;
+using Newtonsoft.Json;
 
 namespace SampleTCPServer
 {
@@ -22,6 +24,7 @@ namespace SampleTCPServer
         bool IsRunning = false;
         private Thread _ListenerThread = null;
         private List<Socket> _ConnectedClients = new List<Socket>();
+        IoTNode newNode = new IoTNode();
         //------------------------------------------------------------------------------------------------------------------------
         #endregion
 
@@ -120,7 +123,15 @@ namespace SampleTCPServer
                     byte[] b = new byte[512];
                     int k = socket.Receive(b);
                     string req = Encoding.ASCII.GetString(b, 0, k);
-                    Console.WriteLine("Rx: " + req);
+                    newNode= JsonConvert.DeserializeObject<IoTNode>(req); //Desirialize Object  
+                    Console.WriteLine("Name: " + newNode.Name);
+                    Console.WriteLine("State: " + newNode.State);
+                    Console.WriteLine("SerialNumber: " + newNode.SerialNumber);
+                    Console.WriteLine("Manufacturer: " + newNode.Manufacturer);
+                    Console.WriteLine("Firmware: " + newNode.Firmware);
+                    Console.WriteLine("Things: " + newNode.Things);
+
+                    //Console.WriteLine("Rx: " + req);
                     try
                     {
 
